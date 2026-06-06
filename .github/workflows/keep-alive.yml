@@ -1,8 +1,8 @@
 name: Trigger Probe of Deployed App on a CRON Schedule
+
 on:
   schedule:
-    # Runs "at minute 0 past every 48 hour" (see https://crontab.guru)... ie: every 2 days
-    - cron: '0 */48 * * *'
+    - cron: '0 0 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Build Docker Image
         run: docker build -t my-probe-image -f probe-action/Dockerfile .
